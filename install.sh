@@ -4,6 +4,8 @@ PROJECT_DIR_NAME=pipeline-nextflow
 pushd .
 if [ ! -d "~/$PROJECT_DIR_NAME" ]; then
     cd
+    
+    sudo apt-get update && sudo apt-get install tree tldr -y
     source ~/.bashrc
     echo "Installing Java"
     curl -s https://get.sdkman.io | bash 
@@ -24,6 +26,7 @@ if [ ! -d "~/$PROJECT_DIR_NAME" ]; then
 
     source ~/.bashrc
     echo "Installing VS Code Server Python extensions..."
+    /tmp/code-server/bin/code-server --install-extension nextflow.nextflow
     /tmp/code-server/bin/code-server --install-extension ms-python.debugpy
     echo "Python extensions for VS Code Server have been installed successfully!"
 
