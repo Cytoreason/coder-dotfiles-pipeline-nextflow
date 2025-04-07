@@ -17,6 +17,9 @@ if [ ! -d "~/$PROJECT_DIR_NAME" ]; then
     mv nextflow $HOME/.local/bin/
     nextflow info
 
+    git clone https://github.com/Cytoreason/$PROJECT_DIR_NAME.git
+    cd $PROJECT_DIR_NAME
+    git pull 
 
 
     source ~/.bashrc
