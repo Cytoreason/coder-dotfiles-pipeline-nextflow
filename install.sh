@@ -47,4 +47,11 @@ if [ ! -d "~/$PROJECT_DIR_NAME" ]; then
 EOF
     fi
 fi
+export LAKECTL_CREDENTIALS_ACCESS_KEY_ID=`gcloud secrets versions access latest --secret=LAKEFS_ACCESS_KEY_ID`
+export LAKECTL_CREDENTIALS_SECRET_ACCESS_KEY=`gcloud secrets versions access latest --secret=LAKEFS_SECRET_ACCESS_KEY`
+export TOWER_ACCESS_TOKEN=`gcloud secrets versions access latest --secret=TOWER_ACCESS_TOKEN`
+export client_id_secret_name="CLIENT_ID_M2M_PUBLIC_SCOPE"
+export client_secret_secret_name="CLIENT_SECRET_M2M_PUBLIC"
+export CLIENT_ID=`gcloud secrets versions access latest --secret=${client_id_secret_name}`
+export CLIENT_SECRET=`gcloud secrets versions access latest --secret=${client_secret_secret_name}`
 popd
