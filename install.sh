@@ -8,7 +8,7 @@ if [ ! -d "~/$PROJECT_DIR_NAME" ]; then
     sudo apt-get update && sudo apt-get install tree tldr -y
 
     # Add NXF_PLUGINS_DIR export to the top of ~/.bashrc if not already present
-grep -qxF 'export NXF_PLUGINS_DIR="/home/coder/pipeline-nextflow/plugins/plugins"' /home/coder/.bashrc || sed -i '1i export NXF_PLUGINS_DIR="/home/coder/pipeline-nextflow/plugins/plugins"' /home/coder/.bashrc
+grep -qxF 'export NXF_PLUGINS_DIR="/home/coder/pipeline-nextflow/plugins"' /home/coder/.bashrc || sed -i '1i export NXF_PLUGINS_DIR="/home/coder/pipeline-nextflow/plugins"' /home/coder/.bashrc
 
     echo "Installing Java"
     curl -s https://get.sdkman.io | bash 
@@ -26,6 +26,8 @@ grep -qxF 'export NXF_PLUGINS_DIR="/home/coder/pipeline-nextflow/plugins/plugins
     cd $PROJECT_DIR_NAME
     git pull 
 
+    curl https://install.duckdb.org | sh
+    sed -i '/^alias dq=/d' ~/.bashrc && echo "alias dq='f(){ duckdb -c \"SELECT * FROM '\\''\$1'\\''\"; }; f'" >> ~/.bashrc
     source ~/.bashrc
     echo "Installing VS Code Server Python extensions..."
     /tmp/code-server/bin/code-server --install-extension nextflow.nextflow
